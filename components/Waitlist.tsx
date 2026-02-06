@@ -31,8 +31,8 @@ const Waitlist = () => {
         </div>
 
         {/* Right Image */}
-        <div className='flex items-center justify-center bg-[#292A25] rounded-3xl w-fit md:w-full md:max-w-151 lg:w-151 lg:h-136 h-auto p-4 md:p-20 lg:p-10 mt-6 md:mt-0'>
-          <Image src="/Logo.svg" alt='logo' width={202} height={202} className="w-20 md:w-40 lg:w-auto h-auto" />
+        <div className='flex items-center justify-center bg-[#292A25] rounded-3xl w-full sm:max-w-xs md:max-w-151 lg:w-100 lg:h-106 h-auto p-4 md:p-20 lg:p-10 mt-6 md:mt-0'>
+          <Image src="/Logo.svg" alt='logo' width={202} height={202} className="w-20 md:lg:w-auto h-auto" />
         </div>
 
       </div>
