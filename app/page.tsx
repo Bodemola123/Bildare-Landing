@@ -10,14 +10,16 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div className='flex flex-col pb-5  gap-20 justify-between min-h-screen items-center'>
+    <div className='flex flex-col pb-5 gap-20 justify-between min-h-screen items-center'>
       <Hero/>  
       <Rectangle/>
       <Why/>  
       <Feature/>
       <Adoptors/>
+      
       <Carousel/>  
       <Waitlist/>
+      
       <Footer/>
     </div>
   )

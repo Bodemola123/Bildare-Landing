@@ -2,8 +2,8 @@ import React from 'react'
 
 const Adoptors = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-16 md:gap-20 lg:gap-22.5 border-y border-[#2E2E2E] px-4 md:px-6 lg:px-8 py-16'>
-      
+    <div className='flex flex-col items-center justify-center gap-16 md:gap-20 lg:gap-22.5 px-4 md:px-6 lg:px-8 py-20'>
+      <div className='w-full h-px bg-[#2E2E2E] max-w-338'></div>
       {/* Header */}
       <div className='flex flex-col gap-4 md:gap-6 items-center justify-center'>
         <div className='border border-[#B9F500] bg-[#292A25] py-2 px-6 md:py-2.5 md:px-10 gap-2.5 rounded-3xl flex items-center justify-center'>
@@ -55,6 +55,7 @@ const Adoptors = () => {
         </div>
 
       </div>
+      <div className='w-full h-px bg-[#2E2E2E] max-w-338'></div>
     </div>
   )
 }

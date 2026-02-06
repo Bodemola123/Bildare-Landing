@@ -56,6 +56,8 @@ const CTA = () => {
         </div>
       </div>
 
+      <div className='w-full h-px bg-[#2E2E2E] max-w-338'></div>
+
     </div>
   )
 }

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Feature = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-16 md:gap-20 lg:gap-22.5 px-4 md:px-6 lg:px-8 py-16'>
+    <div className='flex flex-col items-center justify-center gap-16 md:gap-20 lg:gap-22.5 px-4 md:px-6 lg:px-8 py-12'>
       {/* Header */}
       <div className='flex flex-col gap-4 md:gap-6 items-center justify-center'>
         <div className='border border-[#B9F500] bg-[#292A25] py-2 px-6 md:py-2.5 md:px-10 gap-2.5 rounded-3xl flex items-center justify-center'>

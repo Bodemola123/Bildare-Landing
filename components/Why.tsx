@@ -3,18 +3,18 @@ import React from 'react'
 
 const Why = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center px-4 md:px-6 lg:px-8 border-y 
+        border-[#2E2E2E]">
       <div className='
         flex 
         flex-col 
         md:flex-col lg:flex-row
         items-center 
         justify-center 
-        gap-10 md:gap-12 lg:gap-23
+        gap-10 md:gap-12 lg:gap-40
         w-full
-        py-12 md:py-16 lg:py-16
-        border-y 
-        border-[#2E2E2E]
+        py-12 md:py-12 lg:py-12
+
       '>
 
         {/* Left Content */}
@@ -24,7 +24,7 @@ const Why = () => {
           justify-center 
           gap-4 md:gap-6 lg:gap-6
           items-center md:items-center lg:items-start
-          w-full md:max-w-159.25
+          w-full md:max-w-189.25
           text-center md:text-center lg:text-left
         '>
 
