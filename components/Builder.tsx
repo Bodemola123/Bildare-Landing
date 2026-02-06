@@ -15,7 +15,7 @@ const images = [
   "/Rectangle4.png",
 ];
 
-const Builder= () => {
+const Builder = () => {
   const topRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [rowWidth, setRowWidth] = useState(0);
@@ -27,17 +27,18 @@ const Builder= () => {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden flex justify-center pb-10">
+    <div className="relative w-full overflow-hidden flex justify-center px-4 md:px-8 py-20">
 
       {/* Carousel Background */}
-      <div className="hidden md:absolute inset-0 -z-10 pointer-events-none rotate-[-18.65deg] opacity-[0.07]">
+      <div className="hidden lg:flex">
+      <div className="absolute inset-0 -z-10 pointer-events-none rotate-[-18.65deg] opacity-[0.07]">
         {/* Top row */}
         <div className="overflow-hidden relative mb-5">
           <motion.div
             ref={topRef}
             className="flex gap-6"
             animate={{ x: [-0, -rowWidth] }}
-            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
+            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" } }}
           >
             {[...images, ...images].map((src, i) => (
               <div key={`top-${i}`} className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden">
@@ -53,7 +54,7 @@ const Builder= () => {
             ref={bottomRef}
             className="flex gap-6"
             animate={{ x: [-rowWidth, 0] }}
-            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
+            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" } }}
           >
             {[...images, ...images].reverse().map((src, i) => (
               <div key={`bottom-${i}`} className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden">
@@ -63,9 +64,10 @@ const Builder= () => {
           </motion.div>
         </div>
       </div>
+      </div>
 
       {/* Builder Content */}
-      <div className="px-10 flex flex-col md:flex-row gap-10 md:gap-20 justify-center md:justify-around items-start w-full z-10">
+      <div className="flex flex-col md:flex-row gap-10 md:gap-20 justify-center md:justify-around items-start w-full z-10">
         
         {/* Left Info */}
         <div className="flex flex-col gap-10 w-full md:max-w-152 text-center md:text-left">

@@ -35,7 +35,7 @@ const Hero = () => {
             text-3xl 
             md:text-5xl 
             lg:text-7xl 
-            font-semibold 
+            font-bold 
             w-full 
             max-w-full 
             md:max-w-3xl 

@@ -37,7 +37,7 @@ const Why = () => {
           <h2 className='
             w-full 
             text-2xl md:text-3xl lg:text-5xl 
-            font-semibold 
+            font-bold 
             text-[#ffffff]
             leading-snug md:leading-snug lg:leading-tight
           '>

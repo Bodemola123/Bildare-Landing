@@ -37,9 +37,23 @@ const Footer = () => {
       </div>
 
       {/* Background Text */}
-<p className="w-full h-full opacity-5 font-bold text-[#FFFFFF] text-center my-10 text-[clamp(3.5rem,15vw,35rem)] leading-none">
-  BILDARE
-</p>
+<div className="w-full flex justify-center my-10 opacity-100">
+  <Image
+    src="/bildaretext.svg"
+    alt="BILDARE"
+    width={1394}
+    height={437}
+    className="
+      w-full 
+      h-30 
+      sm:h-45 
+      md:h-70 
+      lg:h-109.25 
+      object-contain
+    "
+  />
+</div>
+
 
 
 

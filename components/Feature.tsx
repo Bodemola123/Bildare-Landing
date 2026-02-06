@@ -25,7 +25,7 @@ const Feature = () => {
 
         {/* Top row – 2 cards */}
         <div className="sm:col-span-1 lg:col-span-3 bg-[#22231F] py-13 px-15.5 rounded-2xl gap-6 md:gap-9 flex flex-col items-start justify-center">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ffffff]">
+          <h1 className="text-xl md:text-2xl lg:text-[28px] font-bold text-[#ffffff] tracking-[-0.06em]">
             Curated modern UI systems
           </h1>
           <p className="text-sm md:text-base lg:text-lg max-w-full text-[#949494]">
@@ -36,7 +36,7 @@ const Feature = () => {
         </div>
 
         <div className="sm:col-span-1 lg:col-span-3 bg-[#22231F] py-13 px-15.5 rounded-2xl gap-6 md:gap-9 flex flex-col items-start justify-center">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ffffff]">
+          <h1 className="text-xl md:text-2xl lg:text-[28px] font-bold text-[#ffffff] tracking-[-0.06em]">
             Modular sections and components
           </h1>
           <p className="text-sm md:text-base lg:text-lg max-w-full text-[#949494]">
@@ -61,7 +61,7 @@ const Feature = () => {
 
         <div className="sm:col-span-1 lg:col-span-2 bg-[#22231F] py-13 px-15.5 rounded-2xl gap-6 md:gap-9 flex flex-col items-start justify-between h-full">
           <div className="flex flex-col gap-4 md:gap-6">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ffffff]">
+            <h1 className="text-xl md:text-2xl lg:text-[28px] font-bold text-[#ffffff] tracking-[-0.06em]">
               AI-assisted editing with boundaries
             </h1>
             <p className="text-sm md:text-base lg:text-lg max-w-full text-[#949494]">
@@ -73,7 +73,7 @@ const Feature = () => {
 
         <div className="sm:col-span-1 lg:col-span-2 bg-[#22231F] py-13 px-15.5 rounded-2xl gap-6 md:gap-9 flex flex-col items-start justify-between h-full">
           <div className="flex flex-col gap-4 md:gap-6">
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#ffffff]">
+            <h1 className="text-xl md:text-2xl lg:text-[28px] font-bold text-[#ffffff] tracking-[-0.06em]">
               A bridge from design to production
             </h1>
             <p className="text-sm md:text-base lg:text-lg max-w-full text-[#949494]">

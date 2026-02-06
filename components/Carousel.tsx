@@ -24,7 +24,7 @@ const Carousel = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-hidden relative py-10 space-y-6 h-screen flex flex-col justify-center">
+    <div className="w-full overflow-hidden relative py-10 space-y-6 min-h-screen flex flex-col justify-center">
       
       {/* Top row - scroll left */}
       <div className="overflow-hidden relative">
@@ -37,18 +37,18 @@ const Carousel = () => {
           }}
         >
           {[...images, ...images].map((src, i) => (
-            <div
-              key={`top-${i}`}
-              className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden"
-            >
-              <Image
-                src={src}
-                alt={`Top carousel ${i}`}
-                width={544}
-                height={445}
-                className="object-cover"
-              />
-            </div>
+<div
+  key={`top-${i}`}
+  className="shrink-0 w-136 h-112.5 rounded-3xl overflow-hidden"
+>
+  <Image
+    src={src}
+    alt={`Top carousel ${i}`}
+    width={544}      // can be anything, overridden by CSS
+    height={445}     // can be anything
+    style={{ width: "544px", height: "445px" }} // enforce size
+  />
+</div>
           ))}
         </motion.div>
       </div>
@@ -64,18 +64,19 @@ const Carousel = () => {
           }}
         >
           {[...images, ...images].reverse().map((src, i) => (
-            <div
-              key={`bottom-${i}`}
-              className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden"
-            >
-              <Image
-                src={src}
-                alt={`Bottom carousel ${i}`}
-                width={544}
-                height={445}
-                className="object-cover"
-              />
-            </div>
+<div
+  key={`bottom-${i}`}
+  className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden"
+>
+  <Image
+    src={src}
+    alt={`Bottom carousel ${i}`}
+    width={544}
+    height={445}
+       style={{ width: "544px", height: "445px" }} // enforce size
+  />
+</div>
+
           ))}
         </motion.div>
       </div>
