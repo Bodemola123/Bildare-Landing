@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import { useState } from "react";
+import { toast } from "sonner";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Input } from './ui/input';
 import { Link, Mail, UserRound } from 'lucide-react';
 import { Label } from './ui/label';
@@ -16,55 +16,107 @@ const images = [
 ];
 
 const Builder = () => {
-  const topRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
-  const [rowWidth, setRowWidth] = useState(0);
 
-  useEffect(() => {
-    if (topRef.current) {
-      setRowWidth(topRef.current.scrollWidth / 2);
-    }
-  }, []);
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  portfolio: "",
+  message: "",
+});
+
+const [loading, setLoading] = useState(false);
+
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+
+const handleSubmit = async () => {
+  if (!formData.name || !formData.email) {
+    toast.error("Please fill in required fields.");
+    return;
+  }
+
+  try {
+    setLoading(true);
+
+    const res = await fetch("/api/builder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!res.ok) throw new Error("Failed to submit");
+
+    toast.success("Application submitted successfully 🚀");
+
+    setFormData({
+      name: "",
+      email: "",
+      portfolio: "",
+      message: "",
+    });
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (error) {
+    toast.error("Something went wrong. Try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="relative w-full overflow-hidden flex justify-center px-4 md:px-8 py-20">
 
       {/* Carousel Background */}
-      <div className="hidden lg:flex">
-      <div className="absolute inset-0 -z-10 pointer-events-none rotate-[-18.65deg] opacity-[0.07]">
-        {/* Top row */}
-        <div className="overflow-hidden relative mb-5">
-          <motion.div
-            ref={topRef}
-            className="flex gap-6"
-            animate={{ x: [-0, -rowWidth] }}
-            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" } }}
-          >
-            {[...images, ...images].map((src, i) => (
-              <div key={`top-${i}`} className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden">
-                <Image src={src} alt={`Top carousel ${i}`} width={544} height={445} className="object-cover" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
+{/* Static Background */}
+<div className="hidden lg:flex">
+  <div className="absolute inset-0 -z-10 pointer-events-none rotate-[-18.65deg] opacity-[0.07]">
 
-        {/* Bottom row */}
-        <div className="overflow-hidden relative mt-5">
-          <motion.div
-            ref={bottomRef}
-            className="flex gap-6"
-            animate={{ x: [-rowWidth, 0] }}
-            transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 24, ease: "linear" } }}
-          >
-            {[...images, ...images].reverse().map((src, i) => (
-              <div key={`bottom-${i}`} className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden">
-                <Image src={src} alt={`Bottom carousel ${i}`} width={544} height={445} className="object-cover" />
-              </div>
-            ))}
-          </motion.div>
+    {/* Top Row */}
+    <div className="flex gap-6 mb-5">
+      {images.map((src, i) => (
+        <div
+          key={`top-${i}`}
+          className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden"
+        >
+          <Image
+            src={src}
+            alt={`Top image ${i}`}
+            width={544}
+            height={445}
+            className="object-cover w-full h-full"
+          />
         </div>
-      </div>
-      </div>
+      ))}
+    </div>
+
+    {/* Bottom Row */}
+    <div className="flex gap-6">
+      {[...images].reverse().map((src, i) => (
+        <div
+          key={`bottom-${i}`}
+          className="shrink-0 w-136 h-111.25 rounded-3xl overflow-hidden"
+        >
+          <Image
+            src={src}
+            alt={`Bottom image ${i}`}
+            width={544}
+            height={445}
+            className="object-cover w-full h-full"
+          />
+        </div>
+      ))}
+    </div>
+
+  </div>
+</div>
+
 
       {/* Builder Content */}
       <div className="flex flex-col md:flex-row gap-10 md:gap-20 justify-center md:justify-around items-start w-full z-10">
@@ -105,7 +157,9 @@ const Builder = () => {
             <div className="grid w-full items-center gap-4">
               <Label htmlFor="name">Name</Label>
               <div className="relative h-12 sm:h-14 md:h-14">
-                <Input placeholder="John Doe" className="pl-10 h-full placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] rounded-3xl! border-none" />
+                <Input   name="name"
+  value={formData.name}
+  onChange={handleChange} placeholder="John Doe" className="pl-10 h-full placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] rounded-3xl! border-none" />
                 <UserRound className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               </div>
             </div>
@@ -114,7 +168,9 @@ const Builder = () => {
             <div className="grid w-full items-center gap-4">
               <Label>Email</Label>
               <div className="relative h-12 sm:h-14 md:h-16">
-                <Input placeholder="you@example.com" className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none" />
+                <Input   name="email"
+  value={formData.email}
+  onChange={handleChange} placeholder="you@example.com" className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none" />
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               </div>
             </div>
@@ -123,7 +179,9 @@ const Builder = () => {
             <div className="grid w-full items-center gap-4">
               <Label>Portfolio Link or Product Sample</Label>
               <div className="relative h-12 sm:h-14 md:h-16">
-                <Input placeholder="Link" className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none" />
+                <Input   name="portfolio"
+  value={formData.portfolio}
+  onChange={handleChange} placeholder="Link" className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none" />
                 <Link className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               </div>
             </div>
@@ -131,12 +189,16 @@ const Builder = () => {
             {/* Message */}
             <div className="grid w-full items-center gap-4">
               <Label>Additional Information</Label>
-              <Textarea placeholder="Tell us a little bit about yourself" className="resize-none w-full rounded-2xl! h-40 sm:h-44 md:h-50.5 bg-[#3B3B3B] border border-[#292A251A] px-4 py-3" />
+              <Textarea   name="message"
+  value={formData.message}
+  onChange={handleChange} placeholder="Tell us a little bit about yourself" className="resize-none w-full rounded-2xl! h-40 sm:h-44 md:h-50.5 bg-[#3B3B3B] border border-[#292A251A] px-4 py-3" />
             </div>
 
             {/* Submit Button */}
-            <button type="button" className="w-fit md:w-38.25 cursor-pointer bg-[#B9F500] p-4 rounded-2xl font-bold text-black flex justify-center items-center gap-2">
-              Apply
+            <button   type="button"
+  onClick={handleSubmit}
+  disabled={loading} className="w-fit md:w-38.25 cursor-pointer bg-[#B9F500] p-4 rounded-2xl font-bold text-black flex justify-center items-center gap-2">
+              {loading ? "Submitting..." : "Apply"}
             </button>
           </form>
         </div>

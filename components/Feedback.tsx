@@ -1,22 +1,68 @@
-import React from 'react'
-import { IoCall } from 'react-icons/io5'
-import { Input } from './ui/input'
-import { Mail, NotebookPen, UserRound } from 'lucide-react'
-import { Label } from './ui/label'
-import { Textarea } from './ui/textarea'
+"use client";
+
+import React, { useState } from "react";
+import { IoCall } from "react-icons/io5";
+import { Input } from './ui/input';
+import { Mail, NotebookPen, UserRound } from 'lucide-react';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
+import { toast } from "sonner";
+
+interface FeedbackForm {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const Feedback = () => {
+  const [formData, setFormData] = useState<FeedbackForm>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/sendFeedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        toast.success("Feedback sent successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error("Failed to send feedback. Please try again.");
+      }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col md:flex-row gap-10 md:gap-20 justify-center md:justify-around items-start w-full px-4 md:px-8">
       
       {/* Left Info */}
       <div className="flex flex-col gap-6 w-full md:max-w-112.5 text-center md:text-left">
-        
         <div className="bg-[#B9F5000D] gap-2.5 rounded-2xl px-2.5 py-1.5 text-[#B9F500] text-xs md:text-sm font-medium w-fit flex flex-row items-center mx-auto md:mx-0">
           <IoCall className="text-[18px]" />
           Report an Issue
         </div>
-
         <div className="flex flex-col gap-2">
           <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-semibold leading-[120%] tracking-[-0.08em]">
             Get in Touch With Us
@@ -25,7 +71,6 @@ const Feedback = () => {
             Here to Support You! Reach Out for Assistance, Feedback, or Questions
           </p>
         </div>
-
         <p className="text-lg sm:text-xl md:text-2xl font-medium leading-[120%] tracking-[-0.06em]">
           Let&apos;s Talk About:
         </p>
@@ -42,12 +87,15 @@ const Feedback = () => {
           </p>
         </div>
 
-        <form className="flex flex-col gap-5 w-full">
+        <div className="flex flex-col gap-5 w-full">
           {/* Name */}
           <div className="grid w-full items-center gap-4">
             <Label htmlFor="name">Name</Label>
             <div className="relative h-12 sm:h-14 md:h-14">
               <Input
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="John Doe"
                 className="pl-10 h-full placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] rounded-3xl! border-none"
               />
@@ -60,6 +108,9 @@ const Feedback = () => {
             <Label>Email</Label>
             <div className="relative h-12 sm:h-14 md:h-16">
               <Input
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="you@example.com"
                 className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none"
               />
@@ -72,6 +123,9 @@ const Feedback = () => {
             <Label>Subject</Label>
             <div className="relative h-12 sm:h-14 md:h-16">
               <Input
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
                 placeholder="Subject"
                 className="pl-10 h-full rounded-3xl! placeholder:text-[#757575] text-white w-full bg-[#3B3B3B] border-none"
               />
@@ -83,6 +137,9 @@ const Feedback = () => {
           <div className="grid w-full items-center gap-4">
             <Label>Message</Label>
             <Textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Tell us a little bit about yourself"
               className="resize-none w-full rounded-2xl! h-40 sm:h-44 md:h-50.5 bg-[#3B3B3B] border border-[#292A251A] px-4 py-3"
             />
@@ -91,15 +148,16 @@ const Feedback = () => {
           {/* Submit Button */}
           <button
             type="button"
+            onClick={handleSubmit}
+            disabled={loading}
             className="w-full sm:w-38.25 cursor-pointer bg-[#B9F500] p-4 rounded-2xl font-bold text-black flex justify-center items-center gap-2"
           >
-            Send
+            {loading ? "Sending..." : "Send"}
           </button>
-        </form>
+        </div>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default Feedback
+export default Feedback;

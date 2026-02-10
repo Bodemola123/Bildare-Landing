@@ -1,4 +1,6 @@
+
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Waitlist = () => {
@@ -25,9 +27,9 @@ const Waitlist = () => {
             </ul>
           </div>
 
-          <button className='cursor-pointer bg-[#B9F500] py-2.5 px-4.5 text-[#000000] font-semibold text-base rounded-2xl flex items-center justify-center gap-2.5 mt-4 md:mt-6'>
+          <Link href="/waitlist" className='cursor-pointer bg-[#B9F500] py-2.5 px-4.5 text-[#000000] font-semibold text-base rounded-2xl flex items-center justify-center gap-2.5 mt-4 md:mt-6'>
             Join Waitlist
-          </button>
+          </Link>
         </div>
 
         {/* Right Image */}

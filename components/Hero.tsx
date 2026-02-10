@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Hero = () => {
@@ -88,7 +89,7 @@ const Hero = () => {
               Become a Creator
             </button>
 
-            <button className='
+            <Link href="/waitlist" className='
               w-full sm:w-auto
               cursor-pointer 
               bg-[#B9F50033] 
@@ -102,8 +103,8 @@ const Hero = () => {
               justify-center 
               gap-2.5
             '>
-              Browse Assets
-            </button>
+              Join Waitlist
+            </Link>
           </div>
 
         </div>

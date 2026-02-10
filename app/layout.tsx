@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/sonner";
 
 const euclidCircular = localFont({
   src: "./fonts/EuclidCircularB-Regular.ttf",
@@ -51,6 +52,7 @@ export default function RootLayout({
 
   {/* Bottom Purple Beam */}
   <div className="w-full h-5 bg-[#9F71E6]" />
+  <Toaster/>
 </body>
     </html>
   );
