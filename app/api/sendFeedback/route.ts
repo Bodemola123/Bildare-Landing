@@ -1,6 +1,7 @@
-import 'dotenv/config'; // Load environment variables from .env file
+import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface FeedbackData {
   name: string;
@@ -13,16 +14,8 @@ export async function POST(req: NextRequest) {
   try {
     const { name, email, subject, message }: FeedbackData = await req.json();
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // app password
-      },
-    });
-
-    await transporter.sendMail({
-      from: `"Bildare Feedback" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: "Bildare Feedback <onboarding@resend.dev>",
       to: "teambildare@gmail.com",
       replyTo: email,
       subject: `Feedback Form: ${subject}`,
@@ -39,8 +32,11 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true });
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error:unknown) {
-    return NextResponse.json({ error: "Failed to send feedback" }, { status: 500 });
+  } catch (error: unknown) {
+    console.error("Feedback email error:", error);
+    return NextResponse.json(
+      { error: "Failed to send feedback" },
+      { status: 500 }
+    );
   }
 }

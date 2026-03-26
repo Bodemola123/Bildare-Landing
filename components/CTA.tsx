@@ -16,11 +16,11 @@ const CTA = () => {
           <p className="text-sm sm:text-base md:text-base font-normal">
             Need some help?
           </p>
-          <button
+          <a href='https://bildare.vercel.app/' target='blank'
             className="bg-[#1C1D19] rounded-2xl px-4.5 py-2.5 sm:py-2.75 text-[#B9F500] font-semibold text-sm sm:text-base mt-2 w-fit"
           >
             Get Started
-          </button>
+          </a>
         </div>
         <Image
           src="/Capa.svg"

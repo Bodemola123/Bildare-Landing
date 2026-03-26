@@ -72,6 +72,7 @@ const Hero = () => {
             w-full 
             sm:w-auto
           '>
+            <Link href="/builder">
             <button className='
               w-full sm:w-auto
               cursor-pointer 
@@ -88,6 +89,7 @@ const Hero = () => {
             '>
               Become a Creator
             </button>
+            </Link>
 
             <Link href="/waitlist" className='
               w-full sm:w-auto

@@ -136,9 +136,12 @@ const handleSubmit = async () => {
             </p>
           </div>
 
-          <button className="py-2.5 cursor-pointer w-fit px-4.5 rounded-2xl bg-[#B9F500] text-black text-sm md:text-base font-semibold leading-[120%] tracking-[-0.06em]">
-            See Guidelines
-          </button>
+<button
+  className="py-2.5 cursor-pointer w-fit px-4.5 rounded-2xl bg-[#B9F500] text-black text-sm md:text-base font-semibold leading-[120%] tracking-[-0.06em]"
+  onClick={() => window.open("/Bildare_Template_Guidelines.pdf", "_blank")}
+>
+  See Guidelines
+</button>
         </div>
 
         {/* Right Form */}
