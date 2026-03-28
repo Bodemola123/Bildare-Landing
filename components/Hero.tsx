@@ -92,7 +92,7 @@ const Hero = () => {
             </Link>
 
             <Link href="/waitlist" className='
-              w-full sm:w-auto
+              w-fit sm:w-fit
               cursor-pointer 
               bg-[#B9F50033] 
               py-2.5 
