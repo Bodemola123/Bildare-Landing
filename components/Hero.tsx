@@ -74,7 +74,7 @@ const Hero = () => {
           '>
             <Link href="/builder">
             <button className='
-              w-full sm:w-auto
+              w-fit sm:w-fit
               cursor-pointer 
               bg-[#B9F500] 
               py-2.5 
