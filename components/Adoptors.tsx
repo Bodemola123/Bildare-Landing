@@ -59,7 +59,7 @@ const Adoptors = () => {
               src={card.image}
               alt={card.title}
               fill
-              className='object-cover opacity-10 rounded-2xl transition-opacity duration-300 group-hover:opacity-20'
+              className='object-cover hidden opacity-10 rounded-2xl transition-opacity duration-300 group-hover:opacity-20'
             />
 
             {/* Lime sweep line at bottom */}
